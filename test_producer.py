@@ -11,7 +11,7 @@ import pytz
 
 def test_producer():
     bootstrap_servers = ['localhost:9092','localhost:9093','localhost:9094']
-    topic_name = 'test-topic-2'
+    topic_name = 'test-topic'
     partitions = 2
     replication_factor = 1
     
@@ -40,7 +40,7 @@ def test_producer():
             message = {'key': 'value', 'timestamp': ko_time_format}
             producer.send(topic_name, message)
             print(f"Sent: {message}")
-            time.sleep(1)  # 1초마다 메시지 전송
+            time.sleep(1)
     except KeyboardInterrupt:
         print("Stopped by user")
     finally:
