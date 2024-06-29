@@ -16,7 +16,7 @@ def consume_partition(partition):
     try:
         while True:
             for message in consumer:
-                print(f"Consumer {partition+1} (Partition {partition}) - Received message: {message.value.decode('utf-8')}")
+                print(f"Consumer {partition+1} (Partition {partition}) (Offset {message.offset}) - Received message: {message.value.decode('utf-8')}")
 
     except KeyboardInterrupt:
         print(f"Consumer {partition+1} (Partition {partition}) - Interrupted, closing consumer...")
