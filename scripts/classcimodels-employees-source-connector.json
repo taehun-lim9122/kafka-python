@@ -1,0 +1,28 @@
+{
+    "name":"classicmodels-employees-source-connector",
+    "config":{
+      "connector.class":"io.debezium.connector.mysql.MySqlConnector",
+      "tasks.max":"1",
+      "database.hostname":"d57d05d0134a",
+      "database.connectionTimeZone": "Asia/Seoul",
+      "database.port":"3306",
+      "database.user":"root",
+      "database.password":"1234",
+      "database.server.id":"1",
+      "database.include.list": "classicmodels", 
+      "table.include.list": "classicmodels.employees",
+      "snapshot.locking.mode": "none",
+      "topic.prefix": "topic",
+      "schema.history.internal.kafka.bootstrap.servers": "broker:29092",
+      "schema.history.internal.kafka.topic":"schema-changes.classicmodels.employees",
+      "database.history.kafka.bootstrap.servers": "kafka-broker:29092",
+      "database.history.kafka.topic": "classicmodels-employees-history-topic",
+      "topic.creation.default.replication.factor" : 1,
+      "topic.creation.default.partitions" : 2,
+      "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+      "transforms": "unwrap",
+      "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+      "transforms.unwrap.drop.tombstones": "false"
+    }
+}
