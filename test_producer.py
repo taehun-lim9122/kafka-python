@@ -37,9 +37,18 @@ def test_producer():
             ko_time = now.astimezone(ko_timezone)
             ko_time_format = ko_time.strftime('%Y-%m-%d %H:%M:%S')
             
-            message = {'key': 'value', 'timestamp': ko_time_format}
-            producer.send(topic_name, message)
-            print(f"Sent: {message}")
+            ny_timezone = pytz.timezone('UTC')
+            ny_time = now.astimezone(ny_timezone)
+            ny_time_format = ny_time.strftime('%Y-%m-%d %H:%M:%S')
+            
+            message_1 = {'key': 'KST', 'timestamp': ko_time_format}
+            message_2 = {'key': 'UTC', 'timestamp': ny_time_format}
+            
+            producer.send(topic_name, message_1)
+            producer.send(topic_name, message_2)
+            
+            print(f"Sent: {message_1}")
+            print(f"Sent: {message_2}")
             time.sleep(1)
     except KeyboardInterrupt:
         print("Stopped by user")
