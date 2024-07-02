@@ -1,7 +1,6 @@
 from kafka import KafkaProducer
 from json import dumps
 import time
-import os
 
 from check_topic_list import list_kafka_topics
 from create_topic import create_topic
@@ -28,7 +27,7 @@ def test_producer():
         print('토픽 있어요')
     else:
         print('토픽 없어여')
-        create_topic(topic_name, partitions, replication_factor)
+        create_topic(bootstrap_servers, topic_name, partitions, replication_factor)
     
     try:
         while True:
